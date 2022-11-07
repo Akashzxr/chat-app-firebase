@@ -1,0 +1,17 @@
+.userbar{
+    width: 100%;
+    display: flex;
+    gap: 15%;
+    justify-content: center;
+    padding-top: 20px;
+}
+
+.user-sec{
+    display: flex;
+    gap: 20px;
+}
+
+.icon-sec{
+    display: flex;
+    gap: 20px;
+}
