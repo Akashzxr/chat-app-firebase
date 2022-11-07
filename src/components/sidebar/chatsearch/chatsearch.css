@@ -1,0 +1,10 @@
+.chatsearch input{
+    border: 0;
+    outline: none;
+    background-color: rgb(240, 240, 240);
+    border-radius: 50px;
+    width: 90%;
+    height: 10px;
+    font-size: 16px;
+    padding: 4%;
+} 
