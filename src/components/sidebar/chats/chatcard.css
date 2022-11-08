@@ -1,0 +1,17 @@
+.chatcard{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 25px;
+}
+
+.chat-details{
+    display: flex;
+    gap: 15px;
+}
+
+.name-message{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
