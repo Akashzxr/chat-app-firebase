@@ -13,9 +13,11 @@ function Login() {
     const navigate = useNavigate();
 
     useEffect(()=>{
-        if(isSignin){
+        if(user){
            navigate('/app');
            console.log(user)
+        }else{
+            navigate('/')
         }
     },[user])
 

@@ -1,14 +1,28 @@
 import './App.css';
 import Sidebar from './components/sidebar/Sidebar';
 import Chat from './components/chat/Chat';
+import { useSelector } from 'react-redux';
+import { Navigate, redirect } from 'react-router-dom';
+import { useEffect } from 'react';
 
 function App() {
-  return (
-    <div className="App">
-        <Sidebar/>
-        <Chat/>
+  const {user} = useSelector((state)=>state.auth)
+
+  useEffect(()=>{
+
+  },[user])
+
+  return(
+    <div>
+        {user ?
+          <div className="App">
+              <Sidebar/>
+              <Chat/>
+         </div>
+         : <Navigate to={'/'} /> }
     </div>
-  );
+  )
+
 }
 
 export default App;
