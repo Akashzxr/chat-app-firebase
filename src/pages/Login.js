@@ -15,7 +15,7 @@ function Login() {
     useEffect(()=>{
         if(isSignin){
            navigate('/app');
-           console.log(use)
+           console.log(user)
         }
     },[user])
 
