@@ -1,11 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { redirect, useNavigate } from "react-router-dom";
 import googleLogin from "../services/googleLogin";
 
 
 const initialState = {
-    user: null,
+    user: JSON.parse(localStorage.getItem('dataKey')),
     isSignin:false,
 }
 
@@ -35,7 +34,8 @@ export const Authslice = createSlice({
         })
         .addCase(signinuser.fulfilled, (state,action)=>{
             state.isSignin=true;
-            state.user = action.payload
+            localStorage.setItem('dataKey', JSON.stringify(action.payload));
+            state.user = JSON.parse(localStorage.getItem('dataKey'));
         })
         .addCase(signinuser.rejected, (state,action)=>{
             state.isSignin=false;

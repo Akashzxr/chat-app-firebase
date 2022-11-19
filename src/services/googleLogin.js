@@ -9,7 +9,11 @@ async function googleLogin(){
     
     const { user } = await signInWithPopup(auth,provider)
 
-    return {uid:user.uid, userName:user.displayName}
+    return {
+        uid: user.uid,
+        userName: user.displayName,
+        profile: user.photoURL
+    }
     
    } catch (error) {
 

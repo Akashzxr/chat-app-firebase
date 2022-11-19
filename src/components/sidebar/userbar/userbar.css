@@ -3,15 +3,23 @@
     display: flex;
     gap: 15%;
     justify-content: center;
+    align-items: center;
     padding-top: 20px;
+}
+
+.userbar img{
+    border-radius: 50%;
+    width: 26%;
 }
 
 .user-sec{
     display: flex;
     gap: 20px;
+    align-items: center;
 }
 
 .icon-sec{
     display: flex;
     gap: 20px;
+    align-items: center;
 }

@@ -2,7 +2,7 @@ import './App.css';
 import Sidebar from './components/sidebar/Sidebar';
 import Chat from './components/chat/Chat';
 import { useSelector } from 'react-redux';
-import { Navigate, redirect } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { useEffect } from 'react';
 
 function App() {
