@@ -1,7 +1,7 @@
 .userbar{
     width: 100%;
     display: flex;
-    gap: 15%;
+    gap: 3%;
     justify-content: center;
     align-items: center;
     padding-top: 20px;
@@ -20,6 +20,25 @@
 
 .icon-sec{
     display: flex;
-    gap: 20px;
+    gap: 11px;
     align-items: center;
+}
+.icon-sec >*{
+    color: grey;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+
+.icon-sec >*:hover{
+    background-color: rgb(241, 241, 241);
+}
+
+.chat-heading{
+    font-size: 23px;
+    font-weight: bolder;
 }

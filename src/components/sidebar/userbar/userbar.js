@@ -9,13 +9,13 @@ export default function Userbar(){
        <div className="userbar">
             <div className="user-sec">
                <img src={user.profile}/>
-               <div>Chats</div>
+               <div className="chat-heading">Chats</div>
              </div>
 
              <div className="icon-sec">
-                <FaEllipsisH/>
-                <FaPlus/>
-                <FaMoon/>
+               <div><FaEllipsisH/></div>
+               <div><FaPlus/></div>
+               <div><FaMoon/></div>
              </div>
        </div>
     );
