@@ -1,6 +1,7 @@
 import "./userbar.css";
 import { useSelector } from "react-redux";
 import {FaEllipsisH,FaPlus,FaMoon} from 'react-icons/fa'
+import { Adduser } from "./Adduser";
 
 export default function Userbar(){
    const { user } = useSelector((state)=>state.auth)
@@ -13,9 +14,10 @@ export default function Userbar(){
              </div>
 
              <div className="icon-sec">
-               <div><FaEllipsisH/></div>
-               <div><FaPlus/></div>
-               <div><FaMoon/></div>
+               <button className="more-btn"><FaEllipsisH/></button>
+               <button className="add-btn"><FaPlus/></button>
+                  <Adduser/>
+               <button className="theme-btn"><FaMoon/></button>
              </div>
        </div>
     );
