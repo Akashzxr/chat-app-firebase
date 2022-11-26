@@ -9,7 +9,7 @@ export default function Userbar(){
     return(
        <div className="userbar">
             <div className="user-sec">
-               <img src={user.profile}/>
+               <img src={user.profile} alt="user" referrerPolicy="no-referrer"/>
                <div className="chat-heading">Chats</div>
              </div>
 
