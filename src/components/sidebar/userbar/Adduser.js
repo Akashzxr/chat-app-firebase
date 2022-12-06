@@ -6,6 +6,8 @@ import { useradd } from "../../../redux/Dataslice";
 export const Adduser = () => {
   const dispatch = useDispatch();
   
+  
+
   return (
     <div className="add-user-container">
         <button className="add-private-btn" onClick={()=>{dispatch(useradd())}}>
