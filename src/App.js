@@ -7,13 +7,13 @@ import { Navigate } from 'react-router-dom';
 import { useEffect } from 'react';
 
 function App() {
-  const {user} = useSelector((state)=>state.auth);
+  const {user,isSignin} = useSelector((state)=>state.auth);
   const {adduser} = useSelector((state)=>state.data)
   
   useEffect(()=>{
     
 
-  },[user,adduser])
+  },[user,adduser,isSignin])
 
   return(
     <div>

@@ -24,7 +24,9 @@ export const Authslice = createSlice({
     reducers:{
         login: async (state) =>{
             state.user = await  googleLogin()
-            
+        },
+        logout: (state) => {
+            state.user = false;
         }
     },
     extraReducers: (builder) => {
@@ -44,6 +46,6 @@ export const Authslice = createSlice({
     }
 });
 
-export  const { login } = Authslice.actions;
+export  const { login, logout } = Authslice.actions;
 
 export default Authslice.reducer

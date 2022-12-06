@@ -7,7 +7,7 @@ import { signinuser } from '../redux/Authslice'
 
 
 function Login() {
-   const {user} = useSelector((state)=>state.auth);
+   const {user, isSignin} = useSelector((state)=>state.auth);
    const dispatch = useDispatch();
 
     const navigate = useNavigate();
@@ -15,7 +15,6 @@ function Login() {
     useEffect(()=>{
         if(user){
            navigate('/app');
-           console.log(user)
         }else{
             navigate('/')
         }
