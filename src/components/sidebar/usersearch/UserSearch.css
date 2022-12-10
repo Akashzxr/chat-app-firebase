@@ -48,3 +48,20 @@
 .cancel-btn:hover{
     background-color: rgb(214, 122, 122);
 }
+
+.result-user-img{
+    border-radius: 50%;
+    width: 40px;
+}
+
+.search-result{
+    display: flex;
+    align-items: center;
+    gap: 7%;
+    font-weight: bolder;
+    border-radius: 5px;
+}
+
+.search-result:hover{
+    background-color: #e3e3e3;
+}
