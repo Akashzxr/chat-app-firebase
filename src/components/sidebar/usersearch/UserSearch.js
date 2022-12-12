@@ -9,9 +9,12 @@ function UserSearch() {
     const [username,setusername]=useState();
     const [user,setuser] = useState();
     const dispatch = useDispatch();
+    
 
     const handleKeydown=async(e)=>{
+      
       if(e.key=='Enter'){
+        let array = [];
         // Create a reference to the users collection
         const usersRef = collection(db, "users");
         // Create a query against the collection.
@@ -20,8 +23,9 @@ function UserSearch() {
         try{
           const querySnapshot = await getDocs(q);
             querySnapshot.forEach((doc) => {
-              console.log(doc.data())
-              setuser(doc.data());
+              array.push(doc.data());
+              //console.log(doc.data())
+              setuser(array);
             });
          }catch(error){
            if(error){
@@ -32,7 +36,7 @@ function UserSearch() {
     }
 
     useEffect(()=>{
-
+    
     },[user,username])
 
 
@@ -44,10 +48,15 @@ function UserSearch() {
             <div className="users-container">
 
               {user ? 
-                <div className="search-result">
-                    <img className="result-user-img" src={user.photoURL}/>
-                    <span>{user.displayName}</span>
-                </div> 
+              <div className="results-container">
+                {user.map((users)=>
+                <div className="result-details-container" key={users.uid}>
+                <img className="result-user-img" src={users.photoURL} referrerPolicy="no-referrer"/>
+                <span>{users.displayName}</span>
+                </div>
+                )}
+              </div>
+                 
               : null}
 
             </div>
