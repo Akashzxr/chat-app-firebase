@@ -1,18 +1,18 @@
 import "./UserSearch.css";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { canceluserbox } from "../../../redux/Dataslice";
 import { useEffect, useState } from "react";
-import { collection, query, where, getDocs } from "firebase/firestore";
+import { collection, query, where, getDocs, doc, setDoc, addDoc, updateDoc, serverTimestamp } from "firebase/firestore";
 import {db} from "../../../services/firebase"
 
 function UserSearch() {
+    const currentuser = useSelector((state)=>state.auth.user)
     const [username,setusername]=useState();
     const [user,setuser] = useState();
     const dispatch = useDispatch();
     
 
     const handleKeydown=async(e)=>{
-      
       if(e.key=='Enter'){
         let array = [];
         // Create a reference to the users collection
@@ -28,15 +28,47 @@ function UserSearch() {
               setuser(array);
             });
          }catch(error){
-           if(error){
+           if(error)
+           {
              console.log("error");
            }
          }
      }
     }
 
+    const handleclick= async(user)=>{
+      let combinedId;
+      combinedId = currentuser.uid > user.uid ? currentuser.uid+user.uid : user.uid+currentuser.uid;
+      console.log(combinedId)
+      
+      await updateDoc(doc(db, "users-chat", currentuser.uid), {
+        [combinedId]:{
+          userinfo:{
+            name:user.displayName,
+            profile:user.photoURL,
+            uid: user.uid,
+          },
+          date:serverTimestamp(),
+        }
+      });
+
+      await updateDoc(doc(db, "users-chat", user.uid), {
+        [combinedId]:{
+          userinfo:{
+            name: currentuser.userName,
+            profile: currentuser.profile,
+            uid: currentuser.uid,
+          },
+          date:serverTimestamp(),
+        }
+      });
+
+      dispatch(canceluserbox());
+
+    }
+
     useEffect(()=>{
-    
+      
     },[user,username])
 
 
@@ -50,7 +82,7 @@ function UserSearch() {
               {user ? 
               <div className="results-container">
                 {user.map((users)=>
-                <div className="result-details-container" key={users.uid}>
+                <div className="result-details-container" key={users.uid} onClick={()=>handleclick(users)}>
                 <img className="result-user-img" src={users.photoURL} referrerPolicy="no-referrer"/>
                 <span>{users.displayName}</span>
                 </div>

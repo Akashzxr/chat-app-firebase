@@ -17,6 +17,8 @@ async function googleLogin(){
         photoURL: user.photoURL,
       });
 
+      await setDoc(doc(db, "users-chat", user.uid),{})
+
     //returning user details after login
     return {
         uid: user.uid,
