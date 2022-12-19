@@ -26,6 +26,7 @@ function UserSearch() {
               array.push(doc.data());
               //console.log(doc.data())
               setuser(array);
+              //console.log(user)
             });
          }catch(error){
            if(error)
