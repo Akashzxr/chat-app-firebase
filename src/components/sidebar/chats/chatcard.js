@@ -27,7 +27,7 @@ export default function Chatcard(){
        // console.log(r);
         //array.push(docSnap.data());
         setusers(r);
-        //console.log(users);
+        console.log(users);
       } else {
         // doc.data() will be undefined in this case
         console.log("No such document!");
@@ -38,6 +38,8 @@ export default function Chatcard(){
       const details={
          username:user[1].userinfo.name,
          profile:user[1].userinfo.profile,
+         uid:user[1].userinfo.uid,
+         combinedid:user[0],
       }
       dispatch(chatuserdetails(details));
    }
