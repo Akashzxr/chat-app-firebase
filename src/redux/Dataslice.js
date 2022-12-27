@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     adduser:false,
+    userdetails:{},
 }
 
 export const Dataslice = createSlice({
@@ -13,9 +14,14 @@ export const Dataslice = createSlice({
         },
         canceluserbox: (state)=>{
             state.adduser = false;
+        },
+        chatuserdetails: (state,action)=>{
+            state.userdetails = action.payload;
+            //console.log(state.userdetails);
         }
+
     }
 })
 
-export const {useradd,canceluserbox} = Dataslice.actions;
+export const {useradd,canceluserbox,chatuserdetails} = Dataslice.actions;
 export default Dataslice.reducer;

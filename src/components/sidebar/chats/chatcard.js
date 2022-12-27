@@ -1,15 +1,16 @@
 import "./chatcard.css";
-import {collection,query, getDoc,doc} from "firebase/firestore";
+import {getDoc,doc} from "firebase/firestore";
 import { db } from "../../../services/firebase";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
+import { chatuserdetails } from "../../../redux/Dataslice";
 
 
 export default function Chatcard(){
 
    const currentuser = useSelector((state)=>state.auth.user);
    const adduser = useSelector((state)=>state.data.adduser);
-   let array = [];
+   const dispatch = useDispatch();
    const [users,setusers] = useState();
   
    const getdata=async()=>{
@@ -18,16 +19,27 @@ export default function Chatcard(){
       
       
       if (docSnap.exists()) {
-       const result = Object.values(docSnap.data())
+       const result = Object.values(docSnap.data());
+       const r = Object.entries(docSnap.data())
+       const t = docSnap.data();
+       
         //console.log("Document data:", docSnap.data());
-        console.log(result);
+       // console.log(r);
         //array.push(docSnap.data());
-        setusers(result);
-       // console.log(users);
+        setusers(r);
+        //console.log(users);
       } else {
         // doc.data() will be undefined in this case
         console.log("No such document!");
       }
+   }
+
+   const handleclick=(user)=>{
+      const details={
+         username:user[1].userinfo.name,
+         profile:user[1].userinfo.profile,
+      }
+      dispatch(chatuserdetails(details));
    }
 
    useEffect(()=>{
@@ -38,12 +50,12 @@ export default function Chatcard(){
          {users ? 
          <div>
           {users.map((users)=>
-         <div className="chatcard" key={users.userinfo.uid}>
+         <div className="chatcard" key={users[1].userinfo.uid} onClick={()=>handleclick(users)}>
            <div className="chat-details">
-               <img src={users.userinfo.profile} referrerPolicy="no-referrer"/>
+               <img src={users[1].userinfo.profile} referrerPolicy="no-referrer"/>
     
                <div className="name-message">
-                    <div className="name">{users.userinfo.name}</div>
+                    <div className="name">{users[1].userinfo.name}</div>
                     <div className="message">hi</div>
                </div>
             </div>

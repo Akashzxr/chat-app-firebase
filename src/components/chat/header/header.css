@@ -9,8 +9,13 @@
 
 .chat-info{
     display: flex;
-    gap: 10px;
+    gap: 30px;
     align-items: center;
+}
+
+.chat-info img{
+    border-radius: 50%;
+    width: 16%;
 }
 
 .name-date{
@@ -18,4 +23,23 @@
     flex-direction: column;
     gap: 5px;
     align-items: flex-start;
+}
+
+.Header button{
+    color: grey;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+
+.Header button:hover{
+    background-color: rgb(241, 241, 241);
+}
+
+.chat-header-username{
+    font-weight: bolder;
 }

@@ -2,7 +2,7 @@ import "./UserSearch.css";
 import { useDispatch, useSelector } from 'react-redux';
 import { canceluserbox } from "../../../redux/Dataslice";
 import { useEffect, useState } from "react";
-import { collection, query, where, getDocs, doc, setDoc, addDoc, updateDoc, serverTimestamp } from "firebase/firestore";
+import { collection, query, where, getDocs, doc, updateDoc, serverTimestamp } from "firebase/firestore";
 import {db} from "../../../services/firebase"
 
 function UserSearch() {
