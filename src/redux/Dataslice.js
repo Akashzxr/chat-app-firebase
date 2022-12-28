@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     adduser:false,
-    userdetails:{},
+    userdetails:false,
 }
 
 export const Dataslice = createSlice({
