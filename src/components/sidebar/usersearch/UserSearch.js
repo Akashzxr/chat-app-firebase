@@ -2,7 +2,7 @@ import "./UserSearch.css";
 import { useDispatch, useSelector } from 'react-redux';
 import { canceluserbox } from "../../../redux/Dataslice";
 import { useEffect, useState } from "react";
-import { collection, query, where, getDocs, doc, updateDoc, serverTimestamp,setDoc } from "firebase/firestore";
+import { collection, query, where, getDocs, doc,getDoc, updateDoc, serverTimestamp,setDoc } from "firebase/firestore";
 import {db} from "../../../services/firebase"
 
 function UserSearch() {
@@ -41,7 +41,7 @@ function UserSearch() {
       let combinedId;
       combinedId = currentuser.uid > user.uid ? currentuser.uid+user.uid : user.uid+currentuser.uid;
       console.log(combinedId)
-      
+      if(currentuser){
       await updateDoc(doc(db, "users-chat", currentuser.uid), {
         [combinedId]:{
           userinfo:{
@@ -63,10 +63,15 @@ function UserSearch() {
           date:serverTimestamp(),
         }
       });
+       
+      const docRef = doc(db, "chat", combinedId);
+      const docSnap = await getDoc(docRef);
 
-      await setDoc(doc(db, "chat", combinedId),{});
-
+      if(docSnap.exists()==false){
+        await setDoc(doc(db, "chat", combinedId),{});
+      }
       dispatch(canceluserbox());
+    }
 
     }
 

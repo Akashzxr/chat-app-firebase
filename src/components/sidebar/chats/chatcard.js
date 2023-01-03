@@ -1,5 +1,5 @@
 import "./chatcard.css";
-import {getDoc,doc} from "firebase/firestore";
+import {getDoc,doc,onSnapshot} from "firebase/firestore";
 import { db } from "../../../services/firebase";
 import { useSelector,useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
@@ -19,15 +19,13 @@ export default function Chatcard(){
       
       
       if (docSnap.exists()) {
-       const result = Object.values(docSnap.data());
-       const r = Object.entries(docSnap.data())
-       const t = docSnap.data();
-       
-        //console.log("Document data:", docSnap.data());
-       // console.log(r);
-        //array.push(docSnap.data());
-        setusers(r);
-        console.log(users);
+        onSnapshot(doc(db, "users-chat", currentuser.uid), (doc) => {
+         const result = Object.entries(doc.data());
+         if(result.length!=0){
+             setusers(result);
+             console.log(result)
+         }
+     });
       } else {
         // doc.data() will be undefined in this case
         console.log("No such document!");

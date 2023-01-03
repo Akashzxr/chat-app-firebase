@@ -1,6 +1,6 @@
 import {GoogleAuthProvider, signInWithPopup, getAuth } from 'firebase/auth';
 import {app,db} from "./firebase"
-import { doc, setDoc } from "firebase/firestore"; 
+import { doc, setDoc ,getDoc} from "firebase/firestore"; 
 
 async function googleLogin(){
   
@@ -16,8 +16,14 @@ async function googleLogin(){
         email: user.email,
         photoURL: user.photoURL,
       });
+      
+      const docRef = doc(db, "users-chat", user.uid);
+      const docSnap = await getDoc(docRef);
 
-      await setDoc(doc(db, "users-chat", user.uid),{})
+      if(docSnap.exists()==false){
+        await setDoc(doc(db, "users-chat", user.uid),{})
+      }
+      
 
     //returning user details after login
     return {

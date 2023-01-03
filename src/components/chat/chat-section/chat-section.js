@@ -8,14 +8,17 @@ export default function Chatsection(){
     const {userdetails} = useSelector((state)=>state.data);
     const {user} = useSelector((state)=>state.auth);
 
-    const [message,setmessage] = useState();
+    const [message,setmessage] = useState(false);
 
     const fetchtext=async()=>{
         onSnapshot(doc(db, "chat", userdetails.combinedid), (doc) => {
             //console.log("Current data: ", doc.data());
             const result = Object.values(doc.data());
-             setmessage(result);
-             console.log(result)
+            if(result.length!=0){
+                setmessage(result);
+                console.log(result)
+            }
+             
         });
     }
     
@@ -32,8 +35,10 @@ export default function Chatsection(){
                  {message[0].map((text)=>
                    <div key={text.id}>
                      {text.userid==user.uid ? 
-                        <div className="current-user-text">{text.message}</div> 
-                        : <div className="another-user-text">{text.message}</div>
+                       <div className="current-user-text-container">
+                        <span className="current-user-text">{text.message}</span> 
+                       </div>
+                        : <span className="another-user-text">{text.message}</span>
                      }
                    </div>
                  )} 
