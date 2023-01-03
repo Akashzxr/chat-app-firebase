@@ -38,7 +38,10 @@ export default function Chatsection(){
                        <div className="current-user-text-container">
                         <span className="current-user-text">{text.message}</span> 
                        </div>
-                        : <span className="another-user-text">{text.message}</span>
+                        : 
+                        <div className="another-user-text-container">
+                            <span className="another-user-text">{text.message}</span>
+                        </div>
                      }
                    </div>
                  )} 

@@ -21,6 +21,8 @@ export default function Footer(){
                    message: text,
             })
           });
+
+          settext("");
     }
 
     useEffect(()=>{
@@ -29,7 +31,7 @@ export default function Footer(){
     return(
         <div className="footer">
             <button className="imoji-btn"><IoHappy style={{width:"23px",height:"23px"}}/></button>
-            <input type={"text"} onChange={(e)=>settext(e.target.value)} placeholder="Aa"/>
+            <input type={"text"} onChange={(e)=>settext(e.target.value)} value={text} placeholder="Aa"/>
             <button className="send-btn" onClick={handleclick}><IoSendSharp style={{width:"23px",height:"23px"}}/></button>
         </div>
     )
