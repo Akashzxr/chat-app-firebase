@@ -4,7 +4,7 @@ import googleLogin from "../services/googleLogin";
 
 
 const initialState = {
-    user: JSON.parse(localStorage.getItem('dataKey')),
+    user: JSON.parse(localStorage.getItem('dataKey')) ? JSON.parse(localStorage.getItem('dataKey')) : null,
     isSignin:false,
 }
 
