@@ -11,7 +11,7 @@
 
 .UserSearch{
     background-color: white;
-    width: 20%;
+   /* width: 20%;*/
     border-radius: 10px;
     height: 45%;
     display: flex;

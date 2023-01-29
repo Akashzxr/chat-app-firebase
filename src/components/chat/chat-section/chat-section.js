@@ -31,7 +31,7 @@ export default function Chatsection(){
     return(
         <div className="chatsection" onClick={fetchtext}>
             {message ?
-              <div>
+              <div className="chat-container">
                  {message[0].map((text)=>
                    <div key={text.id}>
                      {text.userid==user.uid ? 

@@ -3,19 +3,19 @@
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid rgb(204, 200, 200);
-    height: 3rem;
+    height: 7%;
     padding: 10px;
 }
 
 .chat-info{
     display: flex;
-    gap: 30px;
+    gap: 10%;
     align-items: center;
 }
 
 .chat-info img{
     border-radius: 50%;
-    width: 16%;
+    width: 24%;
 }
 
 .name-date{
@@ -25,7 +25,9 @@
     align-items: flex-start;
 }
 
-.Header button{
+
+
+.chat-header-morebutton,.chat-header-backbutton{
     color: grey;
     border-radius: 50%;
     width: 40px;
@@ -36,10 +38,31 @@
     transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
 }
 
-.Header button:hover{
+.chat-header-backbutton{
+    display: none;
+}
+
+.chat-header-morebutton:hover,.chat-header-backbutton:hover{
     background-color: rgb(241, 241, 241);
 }
 
 .chat-header-username{
     font-weight: bolder;
 }
+
+@media screen and (max-width: 600px) {
+    .chat-header-backbutton{
+        display: flex;
+    }
+    .chat-info img{
+        border-radius: 50%;
+        width: 16%;
+    }
+    .chat-info{
+        gap: 5%;
+    }
+    .Header{
+        padding: 10px 0px 10px;
+    }
+}
+
