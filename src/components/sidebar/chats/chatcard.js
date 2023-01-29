@@ -3,7 +3,7 @@ import {getDoc,doc,onSnapshot} from "firebase/firestore";
 import { db } from "../../../services/firebase";
 import { useSelector,useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-import { chatuserdetails } from "../../../redux/Dataslice";
+import { chatuserdetails,sidebardisplayfalse } from "../../../redux/Dataslice";
 
 
 export default function Chatcard(){
@@ -40,6 +40,7 @@ export default function Chatcard(){
          combinedid:user[0],
       }
       dispatch(chatuserdetails(details));
+      dispatch(sidebardisplayfalse());
    }
 
    useEffect(()=>{
