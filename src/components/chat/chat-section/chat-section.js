@@ -14,11 +14,11 @@ export default function Chatsection(){
         onSnapshot(doc(db, "chat", userdetails.combinedid), (doc) => {
             //console.log("Current data: ", doc.data());
             const result = Object.values(doc.data());
+            
             if(result.length!=0){
                 setmessage(result);
-                console.log(result)
             }
-             
+        
         });
     }
     

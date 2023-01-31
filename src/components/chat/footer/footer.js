@@ -22,7 +22,20 @@ export default function Footer(){
             })
           });
 
+        let combinedId = userdetails.combinedid;
+
+        await updateDoc(doc(db, "users-chat", currentuser.uid), {
+            [combinedId+".lastmessage"]: text,
+          });
+    
+          await updateDoc(doc(db, "users-chat", userdetails.uid), {
+            [combinedId+".lastmessage"]: text,
+            
+          });
+
           settext("");
+          console.log("current="+currentuser);
+          console.log("another="+userdetails);
     }
 
     useEffect(()=>{

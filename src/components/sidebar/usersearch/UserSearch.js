@@ -50,6 +50,8 @@ function UserSearch() {
             uid: user.uid,
           },
           date:serverTimestamp(),
+          lastmessage: null,
+          
         }
       });
 
@@ -61,6 +63,7 @@ function UserSearch() {
             uid: currentuser.uid,
           },
           date:serverTimestamp(),
+          lastmessage: null,
         }
       });
        

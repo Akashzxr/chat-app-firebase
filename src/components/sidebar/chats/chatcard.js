@@ -12,6 +12,7 @@ export default function Chatcard(){
    const adduser = useSelector((state)=>state.data.adduser);
    const dispatch = useDispatch();
    const [users,setusers] = useState();
+   
   
    const getdata=async()=>{
       const docRef = doc(db, "users-chat", currentuser.uid);
@@ -24,6 +25,7 @@ export default function Chatcard(){
          if(result.length!=0){
              setusers(result);
              console.log(result)
+             
          }
      });
       } else {
@@ -57,7 +59,7 @@ export default function Chatcard(){
     
                <div className="name-message">
                     <div className="name">{users[1].userinfo.name}</div>
-                    <div className="message">hi</div>
+                    <div className="message">{users[1].lastmessage}</div>
                </div>
             </div>
 
