@@ -33,8 +33,15 @@
     gap: 5px;
 }
 
+.date{
+    color: #6c6565;
+    font-size: smaller;
+}
+
 .message{
+    display: flex;
     width: 4rem;
     overflow: hidden;
     text-overflow: ellipsis;
+    color: #6c6565;
 }

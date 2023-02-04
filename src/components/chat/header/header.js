@@ -33,7 +33,7 @@ export default function Header(){
                 <img src={userdetails.profile}/>
                 <div className="name-date">
                    <div className="chat-header-username">{userdetails.username}</div>
-                   <div>Last message at {date}</div>
+                   <div className="chat-header-date">Last message at {date}</div>
                 </div>
             </div>
 

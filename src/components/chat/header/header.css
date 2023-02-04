@@ -9,13 +9,13 @@
 
 .chat-info{
     display: flex;
-    gap: 10%;
+    gap: 5%;
     align-items: center;
 }
 
 .chat-info img{
     border-radius: 50%;
-    width: 24%;
+    width: 14%;
 }
 
 .name-date{
@@ -48,6 +48,11 @@
 
 .chat-header-username{
     font-weight: bolder;
+}
+
+.chat-header-date{
+    font-size: 87%;
+    color: #6c6565;
 }
 
 @media screen and (max-width: 600px) {
