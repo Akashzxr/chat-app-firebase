@@ -4,7 +4,7 @@ const initialState = {
     adduser:false,
     userdetails:false,
     sidebardisplay:true,
-    
+    date: null,
 }
 
 export const Dataslice = createSlice({
@@ -27,9 +27,12 @@ export const Dataslice = createSlice({
         sidebardisplayfalse: (state)=>{
             state.sidebardisplay = false;
         },
+        updatedate: (state,action)=>{
+           state.date = action.payload;
+        },
 
     }
 })
 
-export const {useradd,canceluserbox,chatuserdetails,sidebardisplaytrue,sidebardisplayfalse} = Dataslice.actions;
+export const {useradd,canceluserbox,chatuserdetails,sidebardisplaytrue,sidebardisplayfalse,updatedate} = Dataslice.actions;
 export default Dataslice.reducer;

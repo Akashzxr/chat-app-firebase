@@ -3,15 +3,18 @@ import {getDoc,doc,onSnapshot} from "firebase/firestore";
 import { db } from "../../../services/firebase";
 import { useSelector,useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-import { chatuserdetails,sidebardisplayfalse } from "../../../redux/Dataslice";
+import { chatuserdetails,sidebardisplayfalse,updatedate } from "../../../redux/Dataslice";
 
 
 export default function Chatcard(){
 
    const currentuser = useSelector((state)=>state.auth.user);
+   const {userdetails} = useSelector((state)=>state.data);
    const adduser = useSelector((state)=>state.data.adduser);
    const dispatch = useDispatch();
    const [users,setusers] = useState();
+   //let formatedDate = null;
+  const [formatedDate,setformatdate] = useState();
    
   
    const getdata=async()=>{
@@ -19,13 +22,25 @@ export default function Chatcard(){
       const docSnap = await getDoc(docRef);
       
       
+      
       if (docSnap.exists()) {
         onSnapshot(doc(db, "users-chat", currentuser.uid), (doc) => {
          const result = Object.entries(doc.data());
          if(result.length!=0){
              setusers(result);
-             console.log(result)
-             
+
+             //setting the date in format
+             if(result[0][1].date){
+             var date = new Date(result[0][1].date.seconds*1000);
+             var DD = date.getDate();
+             var MM = date.getMonth() +1;
+             var YY = date.getFullYear() -2000;
+             var hh = date.getHours();
+             var mm = date.getMinutes();
+             var format = DD+"/"+MM+"/"+YY+"  "+hh+":"+mm;
+             setformatdate(format);
+             dispatch(updatedate(format))
+             }
          }
      });
       } else {
@@ -34,20 +49,26 @@ export default function Chatcard(){
       }
    }
 
+   
+   
    const handleclick=(user)=>{
-      const details={
+      let details={
          username:user[1].userinfo.name,
          profile:user[1].userinfo.profile,
          uid:user[1].userinfo.uid,
          combinedid:user[0],
+         date: formatedDate,
       }
       dispatch(chatuserdetails(details));
+      dispatch(updatedate(formatedDate));
+     // console.log(userdetails);
       dispatch(sidebardisplayfalse());
    }
 
    useEffect(()=>{
      getdata();
-   },[adduser])
+   },[adduser,formatedDate])
+
     return(
        <div >
          {users ? 
@@ -63,14 +84,14 @@ export default function Chatcard(){
                </div>
             </div>
 
-            <div className="date">
-               date
+            <div className="date" >
+               {formatedDate}
+               
             </div>
          </div>
          )}
          </div> : null}
 
-             
        </div>
     );
 }

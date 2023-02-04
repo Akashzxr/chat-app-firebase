@@ -10,7 +10,7 @@ import {v4 as uuidv4} from "uuid";
 export default function Footer(){
     const {userdetails} = useSelector((state)=>state.data);
     const currentuser = useSelector((state)=>state.auth.user)
-    const [text,settext] = useState();
+    const [text,settext] = useState("");
 
     const handleclick=async()=>{
         const uuid = uuidv4();
@@ -23,19 +23,18 @@ export default function Footer(){
           });
 
         let combinedId = userdetails.combinedid;
-
+     //updating the last message
         await updateDoc(doc(db, "users-chat", currentuser.uid), {
             [combinedId+".lastmessage"]: text,
+            [combinedId+".date"]: serverTimestamp(),
           });
     
           await updateDoc(doc(db, "users-chat", userdetails.uid), {
             [combinedId+".lastmessage"]: text,
-            
+            [combinedId+".date"]: serverTimestamp(),
           });
 
           settext("");
-          console.log("current="+currentuser);
-          console.log("another="+userdetails);
     }
 
     useEffect(()=>{
