@@ -13,6 +13,7 @@ export default function Footer(){
     const [text,settext] = useState("");
 
     const handleclick=async()=>{
+        settext("");
         const uuid = uuidv4();
         await updateDoc(doc(db, "chat", userdetails.combinedid),{
              message: arrayUnion({
@@ -32,9 +33,13 @@ export default function Footer(){
           await updateDoc(doc(db, "users-chat", userdetails.uid), {
             [combinedId+".lastmessage"]: text,
             [combinedId+".date"]: serverTimestamp(),
-          });
+          });     
+    }
 
-          settext("");
+    const handleKeydown=(e)=>{
+      if(e.key=='Enter'){
+         handleclick();
+      }
     }
 
     useEffect(()=>{
@@ -43,8 +48,8 @@ export default function Footer(){
     return(
         <div className="footer">
             <button className="imoji-btn"><IoHappy style={{width:"23px",height:"23px"}}/></button>
-            <input type={"text"} onChange={(e)=>settext(e.target.value)} value={text} placeholder="Aa"/>
-            <button className="send-btn" onClick={handleclick}><IoSendSharp style={{width:"23px",height:"23px"}}/></button>
+            <input type={"text"} onKeyDown={handleKeydown} onChange={(e)=>settext(e.target.value)} value={text} placeholder="Aa"/>
+            <button className="send-btn" onClick={handleclick} ><IoSendSharp style={{width:"23px",height:"23px"}}/></button>
         </div>
     )
 }

@@ -44,4 +44,5 @@
     overflow: hidden;
     text-overflow: ellipsis;
     color: #6c6565;
+    white-space: nowrap;
 }
