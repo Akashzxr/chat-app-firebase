@@ -44,9 +44,9 @@ export default function Footer(){
     }
 
     useEffect(()=>{
-        //console.log(text);
+       // console.log("text");
         inputsection.current.focus();
-    },[text])
+    },[text,userdetails])
     return(
         <div className="footer">
             <button className="imoji-btn"><IoHappy style={{width:"23px",height:"23px"}}/></button>
