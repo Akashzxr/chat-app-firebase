@@ -1,6 +1,6 @@
 import "./footer.css";
 import {IoSendSharp,IoHappy} from "react-icons/io5";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import {increment,doc, updateDoc, serverTimestamp,setDoc,arrayUnion } from "firebase/firestore";
 import { db } from "../../../services/firebase";
@@ -11,6 +11,7 @@ export default function Footer(){
     const {userdetails} = useSelector((state)=>state.data);
     const currentuser = useSelector((state)=>state.auth.user)
     const [text,settext] = useState("");
+    const inputsection = useRef();
 
     const handleclick=async()=>{
         settext("");
@@ -44,11 +45,12 @@ export default function Footer(){
 
     useEffect(()=>{
         //console.log(text);
+        inputsection.current.focus();
     },[text])
     return(
         <div className="footer">
             <button className="imoji-btn"><IoHappy style={{width:"23px",height:"23px"}}/></button>
-            <input type={"text"} onKeyDown={handleKeydown} onChange={(e)=>settext(e.target.value)} value={text} placeholder="Aa"/>
+            <input type={"text"} ref={inputsection} onKeyDown={handleKeydown} onChange={(e)=>settext(e.target.value)} value={text} placeholder="Aa"/>
             <button className="send-btn" onClick={handleclick} ><IoSendSharp style={{width:"23px",height:"23px"}}/></button>
         </div>
     )
