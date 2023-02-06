@@ -5,6 +5,7 @@ const initialState = {
     userdetails:false,
     sidebardisplay:true,
     date: null,
+    searchinput: "",
 }
 
 export const Dataslice = createSlice({
@@ -30,9 +31,13 @@ export const Dataslice = createSlice({
         updatedate: (state,action)=>{
            state.date = action.payload;
         },
+        chatsearchinput:(state,action)=>{
+           state.searchinput = action.payload;
+        },
 
     }
 })
 
-export const {useradd,canceluserbox,chatuserdetails,sidebardisplaytrue,sidebardisplayfalse,updatedate} = Dataslice.actions;
+export const {useradd,canceluserbox,chatuserdetails,
+    sidebardisplaytrue,sidebardisplayfalse,updatedate,chatsearchinput} = Dataslice.actions;
 export default Dataslice.reducer;

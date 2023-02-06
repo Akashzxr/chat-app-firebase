@@ -2,26 +2,35 @@ import "./chatcard.css";
 import {getDoc,doc,onSnapshot} from "firebase/firestore";
 import { db } from "../../../services/firebase";
 import { useSelector,useDispatch } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { chatuserdetails,sidebardisplayfalse,updatedate } from "../../../redux/Dataslice";
 
 
 export default function Chatcard(){
 
    const currentuser = useSelector((state)=>state.auth.user);
-   const {userdetails} = useSelector((state)=>state.data);
+   const chatsearch = useSelector((state)=>state.data.searchinput);
    const adduser = useSelector((state)=>state.data.adduser);
    const dispatch = useDispatch();
    const [users,setusers] = useState();
-   //let formatedDate = null;
-  const [formatedDate,setformatdate] = useState();
+   const [formatedDate,setformatdate] = useState();
+
+   const mystyle = {
+    display: "none",
+   };
    
+   const changestyle=(user)=>{
+      let username = user[1].userinfo.name;
+      if(chatsearch != ""){
+          if(username.toLowerCase().includes(chatsearch.toLowerCase())==false){
+            return(mystyle)
+          }
+      }
+   }
   
    const getdata=async()=>{
       const docRef = doc(db, "users-chat", currentuser.uid);
       const docSnap = await getDoc(docRef);
-      
-      
       
       if (docSnap.exists()) {
         onSnapshot(doc(db, "users-chat", currentuser.uid), (doc) => {
@@ -61,20 +70,20 @@ export default function Chatcard(){
       }
       dispatch(chatuserdetails(details));
       dispatch(updatedate(formatedDate));
-     // console.log(userdetails);
       dispatch(sidebardisplayfalse());
    }
 
    useEffect(()=>{
      getdata();
-   },[adduser,formatedDate])
+     
+   },[adduser,formatedDate,chatsearch])
 
     return(
        <div >
          {users ? 
          <div>
           {users.map((users)=>
-         <div className="chatcard" key={users[1].userinfo.uid} onClick={()=>handleclick(users)}>
+         <div style={changestyle(users)} className="chatcard" key={users[1].userinfo.uid} onClick={()=>handleclick(users)}>
            <div className="chat-details">
                <img src={users[1].userinfo.profile} referrerPolicy="no-referrer"/>
     
