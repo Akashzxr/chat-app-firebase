@@ -6,6 +6,11 @@ import { chatsearchinput } from "../../../redux/Dataslice";
 export default function Chatsearch(){
      
     const dispatch = useDispatch();
+    const dark = useSelector((state)=>state.data.darktheme);
+    const theme = {
+        backgroundColor: "#282727",
+        color: "white",
+    }
     
     const handlechange=(e)=>{
         dispatch(chatsearchinput(e.target.value));
@@ -16,7 +21,7 @@ export default function Chatsearch(){
 
             <input
             type={"text"} 
-            placeholder="Search chat" onChange={handlechange} />
+            placeholder="Search chat" onChange={handlechange} style={dark ? theme : null} />
 
         </div>
     )

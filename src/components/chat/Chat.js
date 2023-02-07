@@ -10,6 +10,7 @@ export default function Chat(){
     let mobile = window.innerWidth<600 ? true : false;
     
     
+    
     useEffect(()=>{
         mobile = window.innerWidth<600 ? true : false;
         console.log(mobile);

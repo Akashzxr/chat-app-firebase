@@ -6,6 +6,7 @@ const initialState = {
     sidebardisplay:true,
     date: null,
     searchinput: "",
+    darktheme: false,
 }
 
 export const Dataslice = createSlice({
@@ -34,10 +35,19 @@ export const Dataslice = createSlice({
         chatsearchinput:(state,action)=>{
            state.searchinput = action.payload;
         },
+        darktheme: (state)=>{
+          if(state.darktheme == true){
+            state.darktheme = false;
+          }
+          else{
+            state.darktheme = true;
+          }
+        },
+        
 
     }
 })
 
-export const {useradd,canceluserbox,chatuserdetails,
+export const {useradd,canceluserbox,chatuserdetails,darktheme,
     sidebardisplaytrue,sidebardisplayfalse,updatedate,chatsearchinput} = Dataslice.actions;
 export default Dataslice.reducer;

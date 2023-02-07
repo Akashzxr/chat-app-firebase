@@ -12,6 +12,7 @@ export default function Header(){
     const {userdetails} = useSelector((state)=>state.data);
     const {date} = useSelector((state)=>state.data);
     const currentuser = useSelector((state)=>state.auth.user);
+    const dark = useSelector((state)=>state.data.darktheme);
     const dispatch =  useDispatch();
 
    
@@ -27,7 +28,7 @@ export default function Header(){
     },[])
 
     return(
-        <div className="Header">
+        <div className="Header" style={{borderBottomColor: dark ? "#282727" : null}}>
             <div className="chat-info">
             <button className="chat-header-backbutton" onClick={handleclick}><FaArrowLeft/></button>
                 <img src={userdetails.profile}/>
