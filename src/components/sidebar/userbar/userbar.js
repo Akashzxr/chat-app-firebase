@@ -34,7 +34,7 @@ export default function Userbar(){
                  <Moresection/>
                <button className="add-btn"><FaPlus/></button>
                   <Adduser/>
-               <button className="theme-btn" onClick={handleclick}>{dark ? <FaMoon/> : <FaSun/>}</button>
+               <button className="theme-btn" onClick={handleclick}>{dark ? <FaSun/> : <FaMoon/>}</button>
              </div>
        </div>
     );
