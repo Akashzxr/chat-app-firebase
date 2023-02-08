@@ -3,8 +3,8 @@ import {useSelector} from "react-redux";
 import { useEffect } from "react";
 import {FaEllipsisH,FaArrowLeft,FaTrash} from 'react-icons/fa';
 import { useDispatch } from "react-redux";
-import { sidebardisplaytrue } from "../../../redux/Dataslice";
-import {getDoc,doc,onSnapshot,collection} from "firebase/firestore";
+import { sidebardisplaytrue,chatuserdetails } from "../../../redux/Dataslice";
+import {getDoc,doc,onSnapshot,collection,deleteField,deleteDoc,updateDoc,arrayUnion,} from "firebase/firestore";
 import { db } from "../../../services/firebase";
 
 export default function Header(){
@@ -21,9 +21,31 @@ export default function Header(){
        dispatch(sidebardisplaytrue());
     }
 
+    const deletechat=async()=>{
+        const combinedid = userdetails.combinedid;
+        const chatRef = doc(db, 'chat', combinedid);
+        const userdetailsRef = doc(db, "users-chat", userdetails.uid);
+        const currentuserRef =  doc(db, "users-chat", currentuser.uid);
+
+        /*await updateDoc(cityRef, {
+            "message": deleteField(),
+        });*/
+        dispatch(chatuserdetails(false));
+        
+        await deleteDoc(chatRef);
+
+        await updateDoc(userdetailsRef, {
+            [combinedid]: deleteField(),
+        });
+
+        await updateDoc(currentuserRef, {
+            [combinedid]: deleteField(),
+        });
+    }
+
    
     useEffect(()=>{
-        //console.log(userdetails);
+        console.log(currentuser);
 
     },[])
 
@@ -39,7 +61,7 @@ export default function Header(){
             </div>
 
            <button className="chat-header-morebutton" ><FaEllipsisH/></button>
-           <button className="chat-header-delete-btn"><FaTrash/>Delete</button>
+           <button className="chat-header-delete-btn" onClick={deletechat}><FaTrash/>Delete</button>
         </div>
     )
 }
