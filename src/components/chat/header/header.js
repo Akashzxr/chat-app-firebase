@@ -1,7 +1,7 @@
 import "./header.css";
 import {useSelector} from "react-redux";
 import { useEffect } from "react";
-import {FaEllipsisH,FaArrowLeft} from 'react-icons/fa';
+import {FaEllipsisH,FaArrowLeft,FaTrash} from 'react-icons/fa';
 import { useDispatch } from "react-redux";
 import { sidebardisplaytrue } from "../../../redux/Dataslice";
 import {getDoc,doc,onSnapshot,collection} from "firebase/firestore";
@@ -39,6 +39,7 @@ export default function Header(){
             </div>
 
            <button className="chat-header-morebutton" ><FaEllipsisH/></button>
+           <button className="chat-header-delete-btn"><FaTrash/>Delete</button>
         </div>
     )
 }
