@@ -1,7 +1,5 @@
 .UserSearch-container{
     position:absolute;
-    background-color: grey;
-    opacity: 75%;
     height: 100%;
     width: 100%;
     display: flex;
@@ -9,8 +7,20 @@
     justify-content: center;
 }
 
+.UserSearch-container::after{
+    content:'';
+    opacity: 75%;
+    background-color: grey;
+    height: 100%;
+    width: 100%;
+    position:absolute;
+    top:0;
+    left:0;
+}
+
 .UserSearch{
     background-color: white;
+    z-index: 1;
    /* width: 20%;*/
     border-radius: 10px;
     height: 45%;

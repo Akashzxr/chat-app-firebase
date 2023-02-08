@@ -6,7 +6,8 @@ import { collection, query, where, getDocs, doc,getDoc, updateDoc, serverTimesta
 import {db} from "../../../services/firebase"
 
 function UserSearch() {
-    const currentuser = useSelector((state)=>state.auth.user)
+    const currentuser = useSelector((state)=>state.auth.user);
+    const dark = useSelector((state)=>state.data.darktheme);
     const [username,setusername]=useState(false);
     const [user,setuser] = useState();
     const dispatch = useDispatch();
@@ -94,7 +95,7 @@ function UserSearch() {
 
 
   return (
-    <div className="UserSearch-container">
+    <div className="UserSearch-container" style={{color: "black"}}>
 
         <div className="UserSearch">
             <input type={"text"} placeholder="search"  onChange={(e)=>{setusername(e.target.value)}}/>
