@@ -31,7 +31,8 @@ export default function Header(){
             "message": deleteField(),
         });*/
         dispatch(chatuserdetails(false));
-        
+        dispatch(sidebardisplaytrue());
+
         await deleteDoc(chatRef);
 
         await updateDoc(userdetailsRef, {

@@ -53,6 +53,7 @@ function UserSearch() {
       combinedId = currentuser.uid > user.uid ? currentuser.uid+user.uid : user.uid+currentuser.uid;
       console.log(combinedId)
       if(currentuser){
+        dispatch(canceluserbox());
       await updateDoc(doc(db, "users-chat", currentuser.uid), {
         [combinedId]:{
           userinfo:{
@@ -84,7 +85,7 @@ function UserSearch() {
       if(docSnap.exists()==false){
         await setDoc(doc(db, "chat", combinedId),{});
       }
-      dispatch(canceluserbox());
+      
     }
 
     }
