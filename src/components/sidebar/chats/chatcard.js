@@ -51,6 +51,9 @@ export default function Chatcard(){
              dispatch(updatedate(format))
              }*/
          }
+         else{
+            setusers(false)
+         }
      });
       } else {
         // doc.data() will be undefined in this case
