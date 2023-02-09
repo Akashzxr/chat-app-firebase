@@ -55,7 +55,7 @@ export default function Footer(){
     },[text,userdetails])
     return(
         <div className="footer" style={{borderTopColor: dark ? "#282727" : null}}>
-            <button className="imoji-btn"><IoHappy style={{width:"23px",height:"23px"}}/></button>
+            <button className="imoji-btn"><IoHappy style={{width:"23px",height:"23px",display:"none"}}/></button>
             <input style={dark ? theme : null} type={"text"} ref={inputsection} onKeyDown={handleKeydown} onChange={(e)=>settext(e.target.value)} value={text} placeholder="Aa"/>
             <button className="send-btn" onClick={handleclick} ><IoSendSharp style={{width:"23px",height:"23px"}}/></button>
         </div>

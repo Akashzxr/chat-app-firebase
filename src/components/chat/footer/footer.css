@@ -18,7 +18,7 @@
     background-color: rgb(240, 240, 240);
 }
 
-.send-btn,.imoji-btn{
+.send-btn/*,.imoji-btn*/{
     color: grey;
     border-radius: 50%;
     width: 50px;
@@ -29,6 +29,6 @@
     transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
 }
 
-.send-btn:hover,.imoji-btn:hover{
+.send-btn:hover/*,.imoji-btn:hover*/{
     background-color: rgb(241, 241, 241);
 }
