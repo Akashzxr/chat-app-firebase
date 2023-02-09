@@ -30,7 +30,15 @@ export const Dataslice = createSlice({
             state.sidebardisplay = false;
         },
         updatedate: (state,action)=>{
-           state.date = action.payload;
+           if(action.payload){
+            var date = new Date(action.payload*1000);
+            var DD = date.getDate();
+            var MM = date.getMonth() +1;
+            var YY = date.getFullYear() -2000;
+            var hh = date.getHours();
+            var mm = date.getMinutes();
+            state.date = DD+"/"+MM+"/"+YY+"  "+hh+":"+mm;
+           }
         },
         chatsearchinput:(state,action)=>{
            state.searchinput = action.payload;

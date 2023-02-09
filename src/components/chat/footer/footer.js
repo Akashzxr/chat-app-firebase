@@ -22,11 +22,12 @@ export default function Footer(){
         settext("");
         const uuid = uuidv4();
         await updateDoc(doc(db, "chat", userdetails.combinedid),{
-             message: arrayUnion({
-                   id: uuid,
-                   userid: currentuser.uid,
-                   message: text,
-            })
+                   message: arrayUnion({
+                    id: uuid,
+                    userid: currentuser.uid,
+                    message: text,
+                   }),
+           
           });
 
         let combinedId = userdetails.combinedid;

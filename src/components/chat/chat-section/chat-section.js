@@ -1,49 +1,38 @@
 import "./chatsection.css";
 import { doc, onSnapshot,getDoc } from "firebase/firestore";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {db} from "../../../services/firebase"
 import { useEffect, useState, useRef } from "react";
+import { updatedate } from "../../../redux/Dataslice";
 
-export default function Chatsection(){
+export default function Chatsection(props){
     const {userdetails} = useSelector((state)=>state.data);
     const {user} = useSelector((state)=>state.auth);
     const messagesEndRef = useRef()
+    const dispatch = useDispatch();
 
     const [message,setmessage] = useState(false);
+    
 
     const scrollToBottom = () => {
-        messagesEndRef.current.scrollIntoView({behavior: "smooth"});
-        console.log("hi");
+        
+        messagesEndRef.current.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
       }
 
-    const fetchtext=async()=>{
-        onSnapshot(doc(db, "chat", userdetails.combinedid), (doc) => {
-            //console.log("Current data: ", doc.data());
-            const result = Object.values(doc.data());
-            
-            if(result.length!=0){
-                setmessage(result);
-            }
-            
-        });
-    }
-    
     useEffect(()=>{
-        
-        if(userdetails){
-            fetchtext();
-        }
 
         if(messagesEndRef.current != undefined){
             scrollToBottom();
         }
         
-    },[userdetails])
+        setmessage(props.message)
+        
+    },[userdetails,props.message,messagesEndRef.current])
 
     return(
-        <div className="chatsection" onClick={fetchtext}>
+        <div className="chatsection" >
             {message ?
-              <div className="chat-container">
+              <div  className="chat-container">
                  {message[0].map((text)=>
                    <div key={text.id}>
                      {text.userid==user.uid ? 
@@ -59,9 +48,9 @@ export default function Chatsection(){
                      }
                    </div>
                  )} 
-                 <div ref={messagesEndRef}></div>
+                 <div ref={messagesEndRef} style={{width: "20px",height: "20px"}} ></div>
               </div> 
-            : null}
+                    : null}
         </div>
     )
 }

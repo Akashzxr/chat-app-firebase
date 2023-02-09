@@ -39,7 +39,7 @@ export default function Chatcard(){
              setusers(result);
 
              //setting the date in format
-             if(result[0][1].date){
+             /*if(result[0][1].date){
              var date = new Date(result[0][1].date.seconds*1000);
              var DD = date.getDate();
              var MM = date.getMonth() +1;
@@ -49,7 +49,7 @@ export default function Chatcard(){
              var format = DD+"/"+MM+"/"+YY+"  "+hh+":"+mm;
              setformatdate(format);
              dispatch(updatedate(format))
-             }
+             }*/
          }
      });
       } else {
@@ -58,6 +58,19 @@ export default function Chatcard(){
       }
    }
 
+   const formated=(users)=>{
+        if(users[1].date){
+             var date = new Date(users[1].date.seconds*1000);
+             var DD = date.getDate();
+             var MM = date.getMonth() +1;
+             var YY = date.getFullYear() -2000;
+             var hh = date.getHours();
+             var mm = date.getMinutes();
+             var format = DD+"/"+MM+"/"+YY+"  "+hh+":"+mm;
+            //dispatch(updatedate(users[1].date.seconds))
+             return(format)
+        }
+   }
    
    
    const handleclick=(user)=>{
@@ -66,10 +79,14 @@ export default function Chatcard(){
          profile:user[1].userinfo.profile,
          uid:user[1].userinfo.uid,
          combinedid:user[0],
-         date: formatedDate,
+         date: user[1].date.seconds,
       }
+      if(user[1].date){
+       // setformatdate(users[1].date.seconds);
+      }
+      
       dispatch(chatuserdetails(details));
-      dispatch(updatedate(formatedDate));
+      dispatch(updatedate(user[1].date.seconds));
       dispatch(sidebardisplayfalse());
    }
 
@@ -94,8 +111,7 @@ export default function Chatcard(){
             </div>
 
             <div className="date" >
-               {formatedDate}
-               
+               {formated(users)}
             </div>
          </div>
          )}

@@ -1,6 +1,6 @@
 import "./header.css";
 import {useSelector} from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {FaEllipsisH,FaArrowLeft,FaTrash} from 'react-icons/fa';
 import { useDispatch } from "react-redux";
 import { sidebardisplaytrue,chatuserdetails } from "../../../redux/Dataslice";
@@ -13,9 +13,10 @@ export default function Header(){
     const {date} = useSelector((state)=>state.data);
     const currentuser = useSelector((state)=>state.auth.user);
     const dark = useSelector((state)=>state.data.darktheme);
+    const [formatedDate,setdate] = useState("");
     const dispatch =  useDispatch();
 
-   
+
 
     const handleclick=()=>{
        dispatch(sidebardisplaytrue());
@@ -44,11 +45,22 @@ export default function Header(){
         });
     }
 
+    const formated=(datedata)=>{
+        if(datedata){
+             var date = new Date(datedata*1000);
+             var DD = date.getDate();
+             var MM = date.getMonth() +1;
+             var YY = date.getFullYear() -2000;
+             var hh = date.getHours();
+             var mm = date.getMinutes();
+             var format = DD+"/"+MM+"/"+YY+"  "+hh+":"+mm;
+             setdate(format);
+        }
+   }
    
     useEffect(()=>{
         console.log(currentuser);
-
-    },[])
+    },[date])
 
     return(
         <div className="Header" style={{borderBottomColor: dark ? "#282727" : null}}>
