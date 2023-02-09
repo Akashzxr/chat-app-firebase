@@ -13,7 +13,7 @@ export const Adduser = () => {
             private
         </button>
 
-        <button className="add-public-btn">
+        <button className="add-public-btn" style={{display:"none"}}>
            <FaUsers/>
             public
         </button>
